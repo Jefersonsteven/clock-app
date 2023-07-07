@@ -66,10 +66,10 @@ export default function Home() {
           }`}
         >
           <div className=" absolute w-full h-full bg-black z-10 opacity-30"></div>
-          <div className=" relative ss:p-8 h-full z-20">
+          <div className=" relative ss:px-8 ss:py-16 h-full z-20">
             <section className="h-full flex flex-col justify-between">
               <div className="flex w-full justify-between gap-2">
-                <div className="flex flex-col gap-1 text-base">
+                <div className="flex flex-col gap-1 text-[15px] tracking-[3px]">
                   <p>{`"${quote.content}"`}</p>
                   <h4 className=" font-bold">{quote.author}</h4>
                 </div>
@@ -83,13 +83,13 @@ export default function Home() {
                 />
               </div>
 
-              <div>
-                <div>
-                  <div>
+              <div className="flex flex-col gap-[54px]">
+                <div className="flex flex-col gap-10">
+                  <div className=" flex gap-8">
                     {date.getHours() > 5 && date.getHours() < 18 ? (
                       <Image
                         src="/assets/desktop/icon-sun.svg"
-                        width={22}
+                        width={24}
                         height={24}
                         alt="sun"
                       />
@@ -101,7 +101,7 @@ export default function Home() {
                         alt="moon"
                       />
                     )}
-                    <p>
+                    <p className=" tracking-[4px]">
                       {date.getHours() > 5 &&
                         date.getHours() < 12 &&
                         "GOOD MORNING"}
@@ -113,8 +113,8 @@ export default function Home() {
                         "GOOD EVENING"}
                     </p>
                   </div>
-                  <div>
-                    <h1>
+                  <div className="flex gap-3 items-end h-auto">
+                    <h1 className=" ss:text-[100px] font-extrabold leading-[80px]">
                       {`${date.getHours()}:${`${
                         date.getMinutes().toString().length === 1 ? "0" : ""
                       }${date.getMinutes()}`}`}
@@ -130,10 +130,12 @@ export default function Home() {
               `}
                   </h2>
                 </div>
-                <div>
-                  <div>
-                    <p>MORE</p>
-                    <div>
+                <div className=" rounded-full bg-white text-[#303030] w-[100px]">
+                  <div className="flex gap-2 p-2 pl-6 justify-between">
+                    <p className=" font-bold tracking-widest text-[12px] leading-[26px]">
+                      {open === false ? "MORE" : "LESS"}
+                    </p>
+                    <div className=" w-12 h-12 bg-[#303030] rounded-full grid place-items-center cursor-pointer">
                       {open === false ? (
                         <Image
                           src="/assets/desktop/icon-arrow-down.svg"

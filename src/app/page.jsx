@@ -8,7 +8,7 @@ async function getData() {
   const ip = await data.json();
   const weather = await fetch(`http://worldtimeapi.org/api/ip/${ip.client_ip}`);
   const ipdata = await fetch(
-    `http://ipinfo.io/${ip.client_ip}?token=4b8302d0ab73bd`
+    `http://ipinfo.io/${ip.client_ip}?token=${process.env.NEXT_PUBLIC_API_KEY}`
   );
   const ipinfo = await ipdata.json();
   const weatherData = await weather.json();

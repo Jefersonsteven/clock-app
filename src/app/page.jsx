@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 
 async function getData() {
-  const data = await fetch("http://worldtimeapi.org/api/ip");
+  const data = await fetch("https://worldtimeapi.org/api/ip");
   const ip = await data.json();
-  const weather = await fetch(`http://worldtimeapi.org/api/ip/${ip.client_ip}`);
+  const weather = await fetch(
+    `https://worldtimeapi.org/api/ip/${ip.client_ip}`
+  );
   const ipdata = await fetch(
-    `http://ipinfo.io/${ip.client_ip}?token=${process.env.NEXT_PUBLIC_API_KEY}`
+    `https://ipinfo.io/${ip.client_ip}?token=${process.env.NEXT_PUBLIC_API_KEY}`
   );
   const ipinfo = await ipdata.json();
   const weatherData = await weather.json();

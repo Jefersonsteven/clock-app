@@ -4,11 +4,11 @@ async function getData() {
   const data = await fetch("https://ipapi.co/json/");
   const ip = await data.json();
   const ipdata = await fetch(
-    `https://ipinfo.io/${ip.ip}?token=${process.env.API_KEY}`
+    `https://ipinfo.io/${ip.ip}?token=${process.env.NEXT_PUBLIC_API_KEY}`
   );
   const ipinfo = await ipdata.json();
   const response = await fetch(
-    `https://api.ipgeolocation.io/timezone?apiKey=${process.env.API_KEY_TIME}&tz=${ipinfo.timezone}`
+    `https://api.ipgeolocation.io/timezone?apiKey=${process.env.NEXT_PUBLIC_API_KEY_TIME}&tz=${ipinfo.timezone}`
   );
   const datetime = await response.json();
 

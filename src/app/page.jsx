@@ -2,12 +2,10 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import getInfo from "@/utility/ipSearch";
 
 async function getData() {
-  const response = await fetch("/api/ip");
-  const {
-    data: { ipinfo, weatherData },
-  } = await response.json();
+  const { ipinfo, weatherData } = await getInfo();
 
   return {
     ipinfo,

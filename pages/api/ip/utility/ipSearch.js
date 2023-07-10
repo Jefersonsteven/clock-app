@@ -1,12 +1,10 @@
 async function getData() {
-  const data = await fetch("https://worldtimeapi.org/api/ip");
+  const data = await fetch("https://ipapi.co/json/");
 
   const ip = await data.json();
-  const weather = await fetch(
-    `https://worldtimeapi.org/api/ip/${ip.client_ip}`
-  );
+  const weather = await fetch(`https://worldtimeapi.org/api/ip/${ip.ip}`);
   const ipdata = await fetch(
-    `https://ipinfo.io/${ip.client_ip}?token=${process.env.API_KEY}`
+    `https://ipinfo.io/${ip.ip}?token=${process.env.API_KEY}`
   );
   const ipinfo = await ipdata.json();
   const weatherData = await weather.json();

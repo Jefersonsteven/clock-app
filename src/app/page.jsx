@@ -4,16 +4,10 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 
 async function getData() {
-  const data = await fetch("https://worldtimeapi.org/api/ip");
-  const ip = await data.json();
-  const weather = await fetch(
-    `https://worldtimeapi.org/api/ip/${ip.client_ip}`
-  );
-  const ipdata = await fetch(
-    `https://ipinfo.io/${ip.client_ip}?token=${process.env.NEXT_PUBLIC_API_KEY}`
-  );
-  const ipinfo = await ipdata.json();
-  const weatherData = await weather.json();
+  const response = await fetch("/api/ip");
+  const {
+    data: { ipinfo, weatherData },
+  } = await response.json();
 
   return {
     ipinfo,
@@ -100,6 +94,7 @@ export default function Home() {
                         width={24}
                         height={24}
                         alt="sun"
+                        className="w-auto h-auto xl:w-[24px] xl:h-[26px]"
                       />
                     ) : (
                       <Image
@@ -107,15 +102,15 @@ export default function Home() {
                         width={22}
                         height={24}
                         alt="moon"
-                        className=" xl:w-[24px] xl:h-[26px]"
+                        className="w-auto h-auto xl:w-[24px] xl:h-[26px]"
                       />
                     )}
                     <div className=" tracking-[4px] flex">
                       <p>
-                        {date.getHours() > 5 &&
-                          date.getHours() <= 12 &&
+                        {date.getHours() >= 5 &&
+                          date.getHours() < 12 &&
                           "GOOD MORNING"}
-                        {date.getHours() > 12 &&
+                        {date.getHours() >= 12 &&
                           date.getHours() < 18 &&
                           "GOOD AFTERNOON"}
                         {(date.getHours() >= 18 || date.getHours() < 5) &&
@@ -153,6 +148,7 @@ export default function Home() {
                           alt="arrow"
                           width={10}
                           height={5}
+                          className="w-auto h-auto "
                         />
                       ) : (
                         <Image
@@ -160,6 +156,7 @@ export default function Home() {
                           alt="arrow"
                           width={10}
                           height={5}
+                          className="w-auto h-auto "
                         />
                       )}
                     </div>
